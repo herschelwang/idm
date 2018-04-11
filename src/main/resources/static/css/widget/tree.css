@@ -1,0 +1,101 @@
+
+.front-framework-tree li {
+    list-style-type: none
+}
+
+.front-framework-tree a {
+    text-decoration: none;
+    font-size: 13px;
+    color: black;
+    cursor: pointer;
+}
+
+.front-framework-tree .index-head {
+    height: 70px;
+    border-bottom: 1px solid gray
+}
+
+.front-framework-tree .index-head h1 {
+    margin: 5px 5px 5px 20px;
+}
+
+.front-framework-tree .index-head h1 span {
+    font-size: 60px;
+    color: #3E4F90;
+    margin: 0 10px 0 10px;
+    font-weight: bold;
+    font-family: Impact;
+}
+
+.front-framework-tree .index-left {
+    width: 150px;
+    position: absolute;
+    left: 0;
+}
+
+.front-framework-tree .index-main {
+    height: 100%;
+    margin-left: 150px;
+    border-left: 1px solid gray
+}
+
+.front-framework-tree ul li {
+    margin: 2px 2px 0 20px;
+    list-style-type: none;
+    font-size: 15px;
+}
+
+.front-framework-tree .node-collapse .index-node-ul {
+    display: none;
+}
+
+.front-framework-tree .index-node-li .leaf {
+    width: 14px;
+    height: 15px;
+    margin-right: 3px;
+}
+
+.front-framework-tree .node {
+    background: url('../../images/common/tree.png') 0 0 repeat-x;
+    width: 14px;
+    height: 15px;
+    margin-right: 3px;
+}
+
+.front-framework-tree .node-collapse a .node {
+    background-position: 0 0;
+}
+
+.front-framework-tree .node-expand .node {
+    background-position: -14px 0;
+}
+
+.front-framework-tree .custom {
+    display: none;
+}
+
+.front-framework-tree .node_icon, .front-framework-tree .leaf_icon {
+    background: url("../../images/common/folder.png") 0 0 repeat-x;
+    height: 16px;
+    width: 16px;
+
+}
+
+.front-framework-tree .treeSelected ._tree_text {
+    background-color: #f56969;
+    border-radius: 5px;
+    color: #fff;
+    padding: 2px 10px;
+}
+
+.front-framework-tree .node-expand .node_icon {
+    background-position: -4px -99px;
+}
+
+.front-framework-tree .node-collapse .node_icon {
+    background-position: -4px -3px;;
+}
+
+.front-framework-tree .leaf_icon {
+    background-position: -4px -54px;;
+}

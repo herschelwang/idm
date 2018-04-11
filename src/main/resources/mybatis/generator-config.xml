@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--1. 文件头-->
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+<!--2. 根节点-->
+<generatorConfiguration>
+    <!--3.1 0个或1个-->
+    <!--<properties/>-->
+    <!--3.2 0个或多个, 数据库驱动 -->
+    <classPathEntry
+            location="D:\atide\IDEA\maven\maven_repository\mysql\mysql-connector-java\6.0.6\mysql-connector-java-6.0.6.jar"/>
+    <!--3.3 1个或多个-->
+    <context id="testTables" defaultModelType="flat" targetRuntime="MyBatis3">
+        <!--3.3.1 0个或多个-->
+        <property name="mergeable" value="false"/>
+        <property name="autoDelimitKeywords" value="true"/>
+        <!--3.3.2 0个或多个-->
+        <!--自动实现Serializable接口-->
+        <plugin type="org.mybatis.generator.plugins.SerializablePlugin"/>
+        <!--3.3.3 0个或一个-->
+        <commentGenerator>
+            <property name="suppressDate" value="true"/>
+            <property name="suppressAllComments" value="true"/>
+        </commentGenerator>
+        <!--3.3.4 1个, 数据库链接地址账号密码 -->
+        <jdbcConnection driverClass="com.mysql.jdbc.Driver"
+                        connectionURL="jdbc:mysql://localhost:3306/idm?serverTimezone=Hongkong"
+                        userId="root" password="root">
+            <!--设置可以获取tables remarks信息-->
+            <property name="useInformationSchema" value="true"/>
+            <!--设置可以获取remarks信息-->
+            <property name="remarks" value="true"/>
+        </jdbcConnection>
+        <!--3.3.5 0个或1个-->
+        <javaTypeResolver>
+            <property name="forceBigDecimals" value="false"/>
+        </javaTypeResolver>
+        <!--3.3.6 1个, 生成dto实体类-->
+        <javaModelGenerator targetPackage="name.heshun.idm.domain.dto.auto"
+                            targetProject="src/main/java">
+            <property name="enableSubPackages" value="true"/>
+            <property name="trimStrings" value="true"/>
+        </javaModelGenerator>
+
+        <!--3.3.7 0个或1个, 生成xml文件-->
+        <sqlMapGenerator targetPackage="mybatis.mapper.auto"
+                         targetProject="src/main/resources">
+            <property name="enableSubPackages" value="true"/>
+        </sqlMapGenerator>
+        <!--3.3.8 0个或1个, 生成mapper接口 -->
+        <javaClientGenerator type="XMLMAPPER"
+                             targetPackage="name.heshun.idm.domain.mapper.auto"
+                             targetProject="src/main/java">
+            <property name="enableSubPackages" value="true"/>
+        </javaClientGenerator>
+
+        <!--3.3.9 1个或多个, 生成对应表及类名 -->
+        <table tableName="idm_resource_info"/>
+
+
+    </context>
+</generatorConfiguration>

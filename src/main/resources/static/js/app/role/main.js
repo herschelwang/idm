@@ -1,7 +1,7 @@
-namespace("name.hehsun.idm.role");
+namespace("name.heshun.idm.role");
 
 $(function () {
-    name.hehsun.idm.role.init();
+    name.heshun.idm.role.init();
 
     $('#resourceTree').tree({
         url: paas.webCfg.applicationPath + '/role/getResourceTree',
@@ -56,7 +56,7 @@ $(function () {
     });
 });
 
-name.hehsun.idm.role.init = function () {
+name.heshun.idm.role.init = function () {
     $('#roleTable').datagrid({
         url: paas.webCfg.applicationPath + '/role/getRoleList',
         width: 'auto',

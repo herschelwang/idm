@@ -26,7 +26,7 @@ public class RoleController {
     public ModelAndView main(Model model, HttpServletRequest request) {
         LOG.info("访问了角色页面");
         ModelAndView mv = new ModelAndView();
-        mv.setViewName("role/text");
+        mv.setViewName("role/main");
         return mv;
     }
 

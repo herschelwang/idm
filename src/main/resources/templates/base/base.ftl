@@ -22,12 +22,12 @@
             paasMsbPath: "${paasMsbPath!}"
         };
         paas.loginUser = {
-            userId: "${paasLoginUser.id}",
-            userName: "${paasLoginUser.name}",
-            orgId: "${paasLoginUser.orgId}",
-            orgName: "${paasLoginUser.orgName}",
-            topOrgId: "${paasLoginUser.topOrgId}",
-            topOrgName: "${paasLoginUser.topOrgName}"
+            userId: "${(paasLoginUser.id)!}",
+            userName: "${(paasLoginUser.name)!}",
+            orgId: "${(paasLoginUser.orgId)!}",
+            orgName: "${(paasLoginUser.orgName)!}",
+            topOrgId: "${(paasLoginUser.topOrgId)!}",
+            topOrgName: "${(paasLoginUser.topOrgName)!}"
         }
             <#if textJs??>${textJs}</#if>
     </script>

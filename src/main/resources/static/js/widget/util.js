@@ -1,4 +1,4 @@
-namespace("heshun.util");
+namespace("name.heshun.idm.util");
 
 //解决IE8及以下console未定义问题
 window.console = window.console || (function () {
@@ -171,11 +171,11 @@ heshun.util.close = function () {
     }
 }
 
-hehsun.util.openWindow = function (url) {
+heshun.util.openWindow = function (url) {
     window.open(url, "_blank", "scrollbars=yes,fullscreen=yes,resizable=yes,directories=yes,location=yes,menubar=yes");
 }
 
-hehsun.util.location = {
+heshun.util.location = {
     getQuery: function (name, location) {
         var regex = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
         var _location = location || window.location;

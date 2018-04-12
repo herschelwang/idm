@@ -50,7 +50,7 @@
         </sqlMapGenerator>
         <!--3.3.8 0个或1个, 生成mapper接口 -->
         <javaClientGenerator type="XMLMAPPER"
-                             targetPackage="name.heshun.idm.domain.mapper.auto"
+                             targetPackage="name.heshun.idm.domain.dao.auto"
                              targetProject="src/main/java">
             <property name="enableSubPackages" value="true"/>
         </javaClientGenerator>

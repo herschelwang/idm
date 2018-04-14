@@ -58,7 +58,7 @@ $(function () {
 
 name.heshun.idm.role.init = function () {
     $('#roleTable').datagrid({
-        url: paas.webCfg.applicationPath + '/role/getRoleList',
+        url: paas.webCfg.applicationPath + '/role/listRole',
         width: 'auto',
         height: 'auto',
         fitColumns: true,
@@ -470,7 +470,7 @@ name.heshun.idm.role.updateSysToRole = function () {
 // ftl-新增
 name.heshun.idm.role.add = function () {
     $('#roleForm').form('clear');
-    $("#action").val("add");
+    $("#action").val("insert");
     $('#editRoleModal').modal("show");
 };
 

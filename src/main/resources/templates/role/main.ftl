@@ -21,7 +21,7 @@
 <script type="text/javascript" src="${applicationPath!}/js/widget/namespace.js"></script>
 <script type="text/javascript" src="${applicationPath!}/js/widget/util.js"></script>
 
-<script type="text/javascript" src="${applicationPath!}/js/app/role/main.js"></script>
+<script type="text/javascript" src="${applicationPath!}/js/role/main.js"></script>
 </@htmlHead>
 
 <@htmlBody class="skin1">

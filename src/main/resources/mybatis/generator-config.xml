@@ -56,7 +56,12 @@
         </javaClientGenerator>
 
         <!--3.3.9 1个或多个, 生成对应表及类名 -->
-        <table tableName="idm_resource_info"/>
+        <!--<table tableName="role_info"/>-->
+        <!--<table tableName="module_info"/>-->
+        <!--<table tableName="function_info"/>-->
+        <!--<table tableName="button_info"/>-->
+        <!--<table tableName="resource_info"/>-->
+        <!--<table tableName="role_resource_key"/>-->
 
 
     </context>

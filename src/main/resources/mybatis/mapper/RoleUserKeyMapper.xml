@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="name.heshun.idm.domain.dao.RoleUserKeyMapper">
+    <resultMap id="BaseResultMap" type="name.heshun.idm.domain.dto.auto.RoleUserKey">
+        <id column="role_id" jdbcType="BIGINT" property="roleId"/>
+        <id column="user_id" jdbcType="BIGINT" property="userId"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+    role_id, user_id
+  </sql>
+
+<!--
+    <select id="listUserByRoleId" resultType="java.util.HashMap" parameterType="Long">
+		SELECT
+			K.USER_ID USERID,
+			USER_NAME USERNAME,
+			ORG_ID ORGID,
+			ORG_NAME ORGNAME,
+			ROLE_ID ROLEID
+		FROM (
+			SELECT
+				U.ID USER_ID,
+				U.NAME_ USER_NAME,
+				U.CODE USER_CODE,
+				O.ID ORG_ID,
+				O.NAME_ ORG_NAME
+			FROM
+				user_info user
+			LEFT JOIN org_user_key org_ ON U.ID = OU.USER_ID
+			AND IS_PRIMARY = 1
+			LEFT JOIN IDM_ORG_INFO O ON OU.ORG_ID = O.ID
+			) K
+		LEFT JOIN IDM_ROLE_USER_LINK M ON K.USER_ID = M.USER_ID
+		AND M.ROLE_ID = #{roleId,jdbcType=BIGINT}
+		ORDER BY ORG_ID
+  </select>
+-->
+
+</mapper>

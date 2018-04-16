@@ -109,23 +109,26 @@
     </if>
   </delete>
   <insert id="insert" parameterType="name.heshun.idm.domain.dto.auto.FunctionInfo">
-    insert into function_info (id, gmt_create, gmt_modified, 
-      is_delete, "name", "level", 
-      "status", order_no, target, 
-      "location", navi_path, description, 
-      remark)
-    values (#{id,jdbcType=BIGINT}, #{gmtCreate,jdbcType=TIMESTAMP}, #{gmtModified,jdbcType=TIMESTAMP}, 
-      #{isDelete,jdbcType=TINYINT}, #{name,jdbcType=VARCHAR}, #{level,jdbcType=TINYINT}, 
-      #{status,jdbcType=TINYINT}, #{orderNo,jdbcType=SMALLINT}, #{target,jdbcType=VARCHAR}, 
-      #{location,jdbcType=VARCHAR}, #{naviPath,jdbcType=VARCHAR}, #{description,jdbcType=VARCHAR}, 
-      #{remark,jdbcType=VARCHAR})
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into function_info (gmt_create, gmt_modified, is_delete, 
+      "name", "level", "status", 
+      order_no, target, "location", 
+      navi_path, description, remark
+      )
+    values (#{gmtCreate,jdbcType=TIMESTAMP}, #{gmtModified,jdbcType=TIMESTAMP}, #{isDelete,jdbcType=TINYINT}, 
+      #{name,jdbcType=VARCHAR}, #{level,jdbcType=TINYINT}, #{status,jdbcType=TINYINT}, 
+      #{orderNo,jdbcType=SMALLINT}, #{target,jdbcType=VARCHAR}, #{location,jdbcType=VARCHAR}, 
+      #{naviPath,jdbcType=VARCHAR}, #{description,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}
+      )
   </insert>
   <insert id="insertSelective" parameterType="name.heshun.idm.domain.dto.auto.FunctionInfo">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
     insert into function_info
     <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="id != null">
-        id,
-      </if>
       <if test="gmtCreate != null">
         gmt_create,
       </if>
@@ -164,9 +167,6 @@
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="id != null">
-        #{id,jdbcType=BIGINT},
-      </if>
       <if test="gmtCreate != null">
         #{gmtCreate,jdbcType=TIMESTAMP},
       </if>

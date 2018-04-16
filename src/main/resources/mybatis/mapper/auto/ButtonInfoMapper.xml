@@ -104,21 +104,22 @@
     </if>
   </delete>
   <insert id="insert" parameterType="name.heshun.idm.domain.dto.auto.ButtonInfo">
-    insert into button_info (id, gmt_create, gmt_modified, 
-      is_delete, "name", flag, 
-      order_no, description, remark
-      )
-    values (#{id,jdbcType=BIGINT}, #{gmtCreate,jdbcType=TIMESTAMP}, #{gmtModified,jdbcType=TIMESTAMP}, 
-      #{isDelete,jdbcType=TINYINT}, #{name,jdbcType=VARCHAR}, #{flag,jdbcType=VARCHAR}, 
-      #{orderNo,jdbcType=SMALLINT}, #{description,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}
-      )
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into button_info (gmt_create, gmt_modified, is_delete, 
+      "name", flag, order_no, 
+      description, remark)
+    values (#{gmtCreate,jdbcType=TIMESTAMP}, #{gmtModified,jdbcType=TIMESTAMP}, #{isDelete,jdbcType=TINYINT}, 
+      #{name,jdbcType=VARCHAR}, #{flag,jdbcType=VARCHAR}, #{orderNo,jdbcType=SMALLINT}, 
+      #{description,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="name.heshun.idm.domain.dto.auto.ButtonInfo">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
     insert into button_info
     <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="id != null">
-        id,
-      </if>
       <if test="gmtCreate != null">
         gmt_create,
       </if>
@@ -145,9 +146,6 @@
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="id != null">
-        #{id,jdbcType=BIGINT},
-      </if>
       <if test="gmtCreate != null">
         #{gmtCreate,jdbcType=TIMESTAMP},
       </if>

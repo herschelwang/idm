@@ -14,7 +14,6 @@ $(function () {
 
     $('#resourceModal [name="selectAll"]').on('click', function () {
         var roots = $('#resourceTree').tree('getChecked', 'unchecked');
-
         for (i = 0; i < roots.length; i++) {
             $('#resourceTree').tree('check', roots[i].target);
         }
@@ -45,18 +44,19 @@ $(function () {
             }
         }).done(function (ret) {
             if (ret.succeed) {
-                alert("保存成功");
+                alert("保存成功!");
                 $('#resourceModal').modal("hide");
             } else {
                 alert("保存失败:" + ret.msg);
             }
         }).fail(function () {
-            alert("保存失败");
+            alert("保存失败!");
         });
     });
 });
 
 name.heshun.idm.role.init = function () {
+    //
     $('#roleTable').datagrid({
         url: paas.webCfg.applicationPath + '/role/listRole',
         width: 'auto',
@@ -126,37 +126,14 @@ name.heshun.idm.role.init = function () {
                     op += "<a href='javascript:void(0);' onclick='name.heshun.idm.role.lookAssignBtn(" + rowIndex + ")'>按钮</a>" + tmpGap;
                     op += "<a href='javascript:void(0);' onclick='name.heshun.idm.role.lookAssignPerson(" + rowIndex + ")'>人员</a>" + tmpGap;
                     op += "<a href='javascript:void(0);' onclick='name.heshun.idm.role.lookAssignSys(" + rowIndex + ")'>系统</a>" + tmpGap;
-                    op += "<a href='javascript:void(0);' onclick='role_resource(" + rowIndex + ")'>资源</a>" + tmpGap;
+                    op += "<a href='javascript:void(0);' onclick='name.heshun.idm.role.role_resource(" + rowIndex + ")'>资源</a>" + tmpGap;
                     return op;
                 }
             }
         ]]
     });
 
-    $('#updateRole').click(function () {
-        name.heshun.idm.role.updateRole();
-    });
-
-    $('#updateRoleToUser').click(function () {
-        name.heshun.idm.role.updateRoleToUser();
-    });
-
-    $('#updateRoleToFn').click(function () {
-        name.heshun.idm.role.updateRoleToFn();
-    });
-
-    $('#updateRoleToBtn').click(function () {
-        name.heshun.idm.role.updateRoleToBtn();
-    });
-
-    $('#updateRoleToDataSubject').click(function () {
-        name.heshun.idm.role.updateRoleToDataSubject();
-    });
-
-    $('#updateSysToRole').click(function () {
-        name.heshun.idm.role.updateSysToRole();
-    });
-
+    //
     $('.selectpicker').selectpicker({
         'size': 9,
         'width': '420px',
@@ -309,7 +286,7 @@ name.heshun.idm.role.lookAssignSys = function (rowIndex) {
 }
 
 // init-资源
-var role_resource = function (rowIndex) {
+name.heshun.idm.role.role_resource = function (rowIndex) {
     var row = $('#roleTable').datagrid('getRowByIndex', rowIndex);
     $('#resourceForm').form('clear');
     $('#resourceForm [name="roleId"]').val(row.id);
@@ -346,8 +323,8 @@ var role_resource = function (rowIndex) {
     });
 }
 
-// init-
-name.heshun.idm.role.updateRole = function () {
+// ftl-保存-角色信息
+$('#updateRole').click(function () {
     $('#roleForm').form('submit', {
         url: paas.webCfg.applicationPath + '/role/' + $("#action").val(),
         onSubmit: function () {
@@ -364,10 +341,10 @@ name.heshun.idm.role.updateRole = function () {
             }
         }
     });
-}
+});
 
-// init-
-name.heshun.idm.role.updateRoleToUser = function () {
+// ftl-保存-人员信息
+$('#updateRoleToUser').click(function () {
     var row = $('#roleTable').datagrid('getSelected');
     var userIds = $('#userSelect').val() ? $('#userSelect').val() : [];
     $.ajax({
@@ -388,10 +365,10 @@ name.heshun.idm.role.updateRoleToUser = function () {
             $("#lookRoleUserModal").modal("hide");
         }
     });
-}
+});
 
-// init-
-name.heshun.idm.role.updateRoleToFn = function () {
+// ftl-保存-功能信息
+$('#updateRoleToFn').click(function () {
     var row = $('#roleTable').datagrid('getSelected');
     var functionIds = $('#fnSelect').val() ? $('#fnSelect').val() : [];
     $.ajax({
@@ -412,10 +389,10 @@ name.heshun.idm.role.updateRoleToFn = function () {
             $("#lookRoleFnModal").modal("hide");
         }
     });
-}
+});
 
-// init-
-name.heshun.idm.role.updateRoleToBtn = function () {
+// ftl-保存-按钮信息
+$('#updateRoleToBtn').click(function () {
     var row = $('#roleTable').datagrid('getSelected');
     var buttonIds = $('#btnSelect').val() ? $('#btnSelect').val() : [];
     $.ajax({
@@ -436,15 +413,10 @@ name.heshun.idm.role.updateRoleToBtn = function () {
             $("#lookRoleBtnModal").modal("hide");
         }
     });
-}
+});
 
-// init-
-name.heshun.idm.role.updateRoleToDataSubject = function () {
-
-}
-
-// init-
-name.heshun.idm.role.updateSysToRole = function () {
+// ftl-保存-系统信息
+$('#updateSysToRole').click(function () {
     var row = $('#roleTable').datagrid('getSelected');
     var sysIds = $('#sysSelect').val() ? $('#sysSelect').val() : [];
     $.ajax({
@@ -465,7 +437,12 @@ name.heshun.idm.role.updateSysToRole = function () {
             $("#lookRoleSysModal").modal("hide");
         }
     });
-}
+});
+
+//
+$('#updateRoleToDataSubject').click(function () {
+
+});
 
 // ftl-新增
 name.heshun.idm.role.add = function () {

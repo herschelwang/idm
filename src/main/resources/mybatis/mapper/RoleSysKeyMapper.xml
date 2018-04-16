@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="name.heshun.idm.domain.dao.auto.RoleResourceKeyMapper">
-  <resultMap id="BaseResultMap" type="name.heshun.idm.domain.dto.auto.RoleResourceKey">
+<mapper namespace="name.heshun.idm.domain.dao.RoleSysKeyMapper">
+  <resultMap id="BaseResultMap" type="name.heshun.idm.domain.dto.auto.RoleSysKey">
     <id column="role_id" jdbcType="BIGINT" property="roleId" />
-    <id column="resource_id" jdbcType="BIGINT" property="resourceId" />
+    <id column="sys_id" jdbcType="BIGINT" property="sysId" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -64,15 +64,15 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    role_id, resource_id
+    role_id, sys_id
   </sql>
-  <select id="selectByExample" parameterType="name.heshun.idm.domain.dto.auto.RoleResourceKeyExample" resultMap="BaseResultMap">
+  <select id="selectByExample" parameterType="name.heshun.idm.domain.dto.auto.RoleSysKeyExample" resultMap="BaseResultMap">
     select
     <if test="distinct">
       distinct
     </if>
     <include refid="Base_Column_List" />
-    from role_resource_key
+    from role_sys_key
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
@@ -81,53 +81,53 @@
     </if>
   </select>
   <delete id="deleteByPrimaryKey" parameterType="map">
-    delete from role_resource_key
+    delete from role_sys_key
     where role_id = #{roleId,jdbcType=BIGINT}
-      and resource_id = #{resourceId,jdbcType=BIGINT}
+      and sys_id = #{sysId,jdbcType=BIGINT}
   </delete>
-  <delete id="deleteByExample" parameterType="name.heshun.idm.domain.dto.auto.RoleResourceKeyExample">
-    delete from role_resource_key
+  <delete id="deleteByExample" parameterType="name.heshun.idm.domain.dto.auto.RoleSysKeyExample">
+    delete from role_sys_key
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="name.heshun.idm.domain.dto.auto.RoleResourceKey">
-    insert into role_resource_key (role_id, resource_id)
-    values (#{roleId,jdbcType=BIGINT}, #{resourceId,jdbcType=BIGINT})
+  <insert id="insert" parameterType="name.heshun.idm.domain.dto.auto.RoleSysKey">
+    insert into role_sys_key (role_id, sys_id)
+    values (#{roleId,jdbcType=BIGINT}, #{sysId,jdbcType=BIGINT})
   </insert>
-  <insert id="insertSelective" parameterType="name.heshun.idm.domain.dto.auto.RoleResourceKey">
-    insert into role_resource_key
+  <insert id="insertSelective" parameterType="name.heshun.idm.domain.dto.auto.RoleSysKey">
+    insert into role_sys_key
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="roleId != null">
         role_id,
       </if>
-      <if test="resourceId != null">
-        resource_id,
+      <if test="sysId != null">
+        sys_id,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="roleId != null">
         #{roleId,jdbcType=BIGINT},
       </if>
-      <if test="resourceId != null">
-        #{resourceId,jdbcType=BIGINT},
+      <if test="sysId != null">
+        #{sysId,jdbcType=BIGINT},
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="name.heshun.idm.domain.dto.auto.RoleResourceKeyExample" resultType="java.lang.Long">
-    select count(*) from role_resource_key
+  <select id="countByExample" parameterType="name.heshun.idm.domain.dto.auto.RoleSysKeyExample" resultType="java.lang.Long">
+    select count(*) from role_sys_key
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </select>
   <update id="updateByExampleSelective" parameterType="map">
-    update role_resource_key
+    update role_sys_key
     <set>
       <if test="record.roleId != null">
         role_id = #{record.roleId,jdbcType=BIGINT},
       </if>
-      <if test="record.resourceId != null">
-        resource_id = #{record.resourceId,jdbcType=BIGINT},
+      <if test="record.sysId != null">
+        sys_id = #{record.sysId,jdbcType=BIGINT},
       </if>
     </set>
     <if test="_parameter != null">
@@ -135,9 +135,9 @@
     </if>
   </update>
   <update id="updateByExample" parameterType="map">
-    update role_resource_key
+    update role_sys_key
     set role_id = #{record.roleId,jdbcType=BIGINT},
-      resource_id = #{record.resourceId,jdbcType=BIGINT}
+      sys_id = #{record.sysId,jdbcType=BIGINT}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>

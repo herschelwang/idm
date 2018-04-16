@@ -1,7 +1,7 @@
 package name.heshun.idm.domain.dao.auto;
 
 import java.util.List;
-import name.heshun.idm.domain.dto.ResourceInfo;
+
 import name.heshun.idm.domain.dto.auto.ResourceInfoExample;
 import org.apache.ibatis.annotations.Param;
 

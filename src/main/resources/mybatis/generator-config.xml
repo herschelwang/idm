@@ -56,12 +56,32 @@
         </javaClientGenerator>
 
         <!--3.3.9 1个或多个, 生成对应表及类名 -->
-        <!--<table tableName="role_info"/>-->
-        <!--<table tableName="module_info"/>-->
-        <!--<table tableName="function_info"/>-->
-        <!--<table tableName="button_info"/>-->
-        <!--<table tableName="resource_info"/>-->
+        <!--<table tableName="role_info">-->
+            <!--<generatedKey column="id" sqlStatement="MySql" identity="true"/>-->
+        <!--</table>-->
+        <!--<table tableName="module_info">-->
+            <!--<generatedKey column="id" sqlStatement="MySql" identity="true"/>-->
+        <!--</table>-->
+        <!--<table tableName="function_info">-->
+            <!--<generatedKey column="id" sqlStatement="MySql" identity="true"/>-->
+        <!--</table>-->
+        <!--<table tableName="button_info">-->
+            <!--<generatedKey column="id" sqlStatement="MySql" identity="true"/>-->
+        <!--</table>-->
+        <!--<table tableName="resource_info">-->
+            <!--<generatedKey column="id" sqlStatement="MySql" identity="true"/>-->
+        <!--</table>-->
+        <!--<table tableName="user_info">-->
+            <!--<generatedKey column="id" sqlStatement="MySql" identity="true"/>-->
+        <!--</table>-->
+        <!--<table tableName="sys_info">-->
+            <!--<generatedKey column="id" sqlStatement="MySql" identity="true"/>-->
+        <!--</table>-->
+        <!--<table tableName="role_function_key"/>-->
+        <!--<table tableName="role_button_key"/>-->
         <!--<table tableName="role_resource_key"/>-->
+        <!--<table tableName="role_user_key"/>-->
+        <!--<table tableName="role_sys_key"/>-->
 
 
     </context>

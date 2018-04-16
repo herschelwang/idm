@@ -20,9 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.annotation.Resource;
-import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
-import java.io.IOException;
 import java.util.*;
 
 /**
@@ -34,7 +32,7 @@ import java.util.*;
 @RestController
 @RequestMapping("/role")
 public class RoleController {
-    private static Logger LOGGER = LoggerFactory.getLogger(RoleController.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(RoleController.class);
 
     @Resource
     private RoleService roleService;
@@ -51,8 +49,7 @@ public class RoleController {
     }
 
 
-    @RequestMapping(value = "/listRole", produces = "text/html;charset=UTF-8",
-            method = {RequestMethod.GET, RequestMethod.POST})
+    @RequestMapping(value = "/listRole", method = {RequestMethod.GET, RequestMethod.POST})
     public String listRole(HttpServletRequest request,
                            @RequestParam(required = false) String callback,
                            @RequestParam(name = "name", required = false, defaultValue = "") String name,
@@ -74,13 +71,11 @@ public class RoleController {
         }
     }
 
-    @RequestMapping(value = "/insert", produces = "text/html;charset=UTF-8",
-            method = {RequestMethod.GET, RequestMethod.POST})
+    @RequestMapping(value = "/insert", method = {RequestMethod.GET, RequestMethod.POST})
     public String insert(@RequestParam(name = "name", required = false, defaultValue = "") String name,
                          @RequestParam(name = "isDefault", required = false, defaultValue = "0") Byte isDefault,
                          @RequestParam(name = "description", required = false, defaultValue = "") String description,
-                         @RequestParam(name = "remark", required = false, defaultValue = "") String remark)
-            throws ServletException, IOException {
+                         @RequestParam(name = "remark", required = false, defaultValue = "") String remark) {
         RoleInfo info = new RoleInfo();
         info.setName(name);
         info.setDescription(description);
@@ -90,13 +85,11 @@ public class RoleController {
         return JsonUtils.getJson(ret);
     }
 
-    @RequestMapping(value = "/update", produces = "text/html;charset=UTF-8",
-            method = {RequestMethod.GET, RequestMethod.POST})
+    @RequestMapping(value = "/update", method = {RequestMethod.GET, RequestMethod.POST})
     public String update(@RequestParam(name = "name", required = false, defaultValue = "") String name,
                          @RequestParam(name = "isDefault", required = false, defaultValue = "0") Byte isDefault,
                          @RequestParam(name = "description", required = false, defaultValue = "") String description,
-                         @RequestParam(name = "remark", required = false, defaultValue = "") String remark)
-            throws ServletException, IOException {
+                         @RequestParam(name = "remark", required = false, defaultValue = "") String remark) {
         RoleInfo info = new RoleInfo();
         info.setName(name);
         info.setDescription(description);
@@ -106,48 +99,41 @@ public class RoleController {
         return JsonUtils.getJson(ret);
     }
 
-    @RequestMapping(value = "/delete", produces = "text/html;charset=UTF-8",
-            method = {RequestMethod.GET, RequestMethod.POST})
-    public String delete(@RequestParam(name = "id", required = false, defaultValue = "") Long id)
-            throws ServletException, IOException {
+    @RequestMapping(value = "/delete", method = {RequestMethod.GET, RequestMethod.POST})
+    public String delete(@RequestParam(name = "id", required = false, defaultValue = "") Long id) {
         ResultData<Long> ret = roleService.deleteRole(id);
         return JsonUtils.getJson(ret);
     }
 
-    @RequestMapping(value = "/getRoleAndUserByRoleId", produces = "text/html;charset=UTF-8",
-            method = {RequestMethod.GET, RequestMethod.POST})
+    @RequestMapping(value = "/getRoleAndUserByRoleId", method = {RequestMethod.GET, RequestMethod.POST})
     public String getRoleAndUserByRoleId(@RequestParam(name = "roleId", required = false, defaultValue = "") Long roleId) {
-        ResultData<List<Map<String, Object>>> ret = roleService.getRoleAndUserByRoleId(roleId);
+        ResultData<List<Map<String, Object>>> ret = roleService.listUserByRoleId(roleId);
         return JsonUtils.getJson(ret);
 
     }
 
-    @RequestMapping(value = "/getRoleAndFunctionByRoleId", produces = "text/html;charset=UTF-8",
-            method = {RequestMethod.GET, RequestMethod.POST})
+    @RequestMapping(value = "/getRoleAndFunctionByRoleId", method = {RequestMethod.GET, RequestMethod.POST})
     public String getRoleAndFunctionByRoleId(@RequestParam(name = "roleId", required = false, defaultValue = "") Long roleId) {
         ResultData<List<Map<String, Object>>> ret = roleService.getRoleAndFunctionByRoleId(roleId);
         return JsonUtils.getJson(ret);
 
     }
 
-    @RequestMapping(value = "/getRoleAndButtonByRoleId", produces = "text/html;charset=UTF-8",
-            method = {RequestMethod.GET, RequestMethod.POST})
+    @RequestMapping(value = "/getRoleAndButtonByRoleId", method = {RequestMethod.GET, RequestMethod.POST})
     public String getRoleAndButtonByRoleId(@RequestParam(name = "roleId", required = false, defaultValue = "") Long roleId) {
         ResultData<List<Map<String, Object>>> ret = roleService.getRoleAndButtonByRoleId(roleId);
         return JsonUtils.getJson(ret);
 
     }
 
-    @RequestMapping(value = "/getRoleAndSysByRoleId", produces = "text/html;charset=UTF-8",
-            method = {RequestMethod.GET, RequestMethod.POST})
+    @RequestMapping(value = "/getRoleAndSysByRoleId", method = {RequestMethod.GET, RequestMethod.POST})
     public String getRoleAndSysByRoleId(@RequestParam(name = "roleId", required = false, defaultValue = "") Long roleId) {
         ResultData<List<Map<String, Object>>> ret = roleService.getRoleAndSysByRoleId(roleId);
         return JsonUtils.getJson(ret);
 
     }
 
-    @RequestMapping(value = "/assignUser2Role", produces = "text/html;charset=UTF-8",
-            method = {RequestMethod.GET, RequestMethod.POST})
+    @RequestMapping(value = "/assignUser2Role", method = {RequestMethod.GET, RequestMethod.POST})
     public String assignUser2Role(@RequestParam(name = "roleId", required = false, defaultValue = "") Long roleId,
                                   @RequestParam(name = "jsonUserId", required = false, defaultValue = "") String jsonUserId) {
         List<Long> userIds = JsonUtils.getList(jsonUserId, Long.class);
@@ -155,8 +141,7 @@ public class RoleController {
         return JsonUtils.getJson(ret);
     }
 
-    @RequestMapping(value = "/assignFunction2Role", produces = "text/html;charset=UTF-8",
-            method = {RequestMethod.GET, RequestMethod.POST})
+    @RequestMapping(value = "/assignFunction2Role", method = {RequestMethod.GET, RequestMethod.POST})
     public String assignFunction2Role(@RequestParam(name = "roleId", required = false, defaultValue = "") Long roleId,
                                       @RequestParam(name = "jsonFunctionId", required = false, defaultValue = "") String jsonFunctionId) {
         List<Long> functionIds = JsonUtils.getList(jsonFunctionId, Long.class);
@@ -164,8 +149,7 @@ public class RoleController {
         return JsonUtils.getJson(ret);
     }
 
-    @RequestMapping(value = "/assignButton2Role", produces = "text/html;charset=UTF-8",
-            method = {RequestMethod.GET, RequestMethod.POST})
+    @RequestMapping(value = "/assignButton2Role", method = {RequestMethod.GET, RequestMethod.POST})
     public String assignButton2Role(@RequestParam(name = "roleId", required = false, defaultValue = "") Long roleId,
                                     @RequestParam(name = "jsonButtonId", required = false, defaultValue = "") String jsonButtonId) {
         List<Long> buttonIds = JsonUtils.getList(jsonButtonId, Long.class);
@@ -173,8 +157,7 @@ public class RoleController {
         return JsonUtils.getJson(ret);
     }
 
-    @RequestMapping(value = "/assignSys2Role", produces = "text/html;charset=UTF-8",
-            method = {RequestMethod.GET, RequestMethod.POST})
+    @RequestMapping(value = "/assignSys2Role", method = {RequestMethod.GET, RequestMethod.POST})
     public String assignSys2Role(@RequestParam(name = "roleId", required = false, defaultValue = "") Long roleId,
                                  @RequestParam(name = "jsonSysId", required = false, defaultValue = "") String jsonSysId) {
         List<Long> sysIds = JsonUtils.getList(jsonSysId, Long.class);

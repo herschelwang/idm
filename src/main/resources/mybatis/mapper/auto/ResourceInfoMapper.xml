@@ -12,7 +12,7 @@
     <result column="code" jdbcType="VARCHAR" property="code" />
     <result column="value" jdbcType="VARCHAR" property="value" />
     <result column="order_no" jdbcType="SMALLINT" property="orderNo" />
-    <result column="css_type" jdbcType="VARCHAR" property="cssType" />
+    <result column="css_style" jdbcType="VARCHAR" property="cssStyle" />
     <result column="css_class" jdbcType="VARCHAR" property="cssClass" />
     <result column="html_attribute" jdbcType="VARCHAR" property="htmlAttribute" />
     <result column="url" jdbcType="VARCHAR" property="url" />
@@ -79,7 +79,7 @@
   </sql>
   <sql id="Base_Column_List">
     id, gmt_create, gmt_modified, is_delete, super_id, is_enabled, "name", code, "value", 
-    order_no, css_type, css_class, html_attribute, url, description, target
+    order_no, css_style, css_class, html_attribute, url, description, target
   </sql>
   <select id="selectByExample" parameterType="name.heshun.idm.domain.dto.auto.ResourceInfoExample" resultMap="BaseResultMap">
     select
@@ -112,25 +112,28 @@
     </if>
   </delete>
   <insert id="insert" parameterType="name.heshun.idm.domain.dto.auto.ResourceInfo">
-    insert into resource_info (id, gmt_create, gmt_modified, 
-      is_delete, super_id, is_enabled, 
-      "name", code, "value", 
-      order_no, css_type, css_class, 
-      html_attribute, url, description, 
-      target)
-    values (#{id,jdbcType=BIGINT}, #{gmtCreate,jdbcType=TIMESTAMP}, #{gmtModified,jdbcType=TIMESTAMP}, 
-      #{isDelete,jdbcType=TINYINT}, #{superId,jdbcType=BIGINT}, #{isEnabled,jdbcType=TINYINT}, 
-      #{name,jdbcType=VARCHAR}, #{code,jdbcType=VARCHAR}, #{value,jdbcType=VARCHAR}, 
-      #{orderNo,jdbcType=SMALLINT}, #{cssType,jdbcType=VARCHAR}, #{cssClass,jdbcType=VARCHAR}, 
-      #{htmlAttribute,jdbcType=VARCHAR}, #{url,jdbcType=VARCHAR}, #{description,jdbcType=VARCHAR}, 
-      #{target,jdbcType=VARCHAR})
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into resource_info (gmt_create, gmt_modified, is_delete, 
+      super_id, is_enabled, "name", 
+      code, "value", order_no, 
+      css_style, css_class, html_attribute, 
+      url, description, target
+      )
+    values (#{gmtCreate,jdbcType=TIMESTAMP}, #{gmtModified,jdbcType=TIMESTAMP}, #{isDelete,jdbcType=TINYINT}, 
+      #{superId,jdbcType=BIGINT}, #{isEnabled,jdbcType=TINYINT}, #{name,jdbcType=VARCHAR}, 
+      #{code,jdbcType=VARCHAR}, #{value,jdbcType=VARCHAR}, #{orderNo,jdbcType=SMALLINT}, 
+      #{cssStyle,jdbcType=VARCHAR}, #{cssClass,jdbcType=VARCHAR}, #{htmlAttribute,jdbcType=VARCHAR}, 
+      #{url,jdbcType=VARCHAR}, #{description,jdbcType=VARCHAR}, #{target,jdbcType=VARCHAR}
+      )
   </insert>
   <insert id="insertSelective" parameterType="name.heshun.idm.domain.dto.auto.ResourceInfo">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
     insert into resource_info
     <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="id != null">
-        id,
-      </if>
       <if test="gmtCreate != null">
         gmt_create,
       </if>
@@ -158,8 +161,8 @@
       <if test="orderNo != null">
         order_no,
       </if>
-      <if test="cssType != null">
-        css_type,
+      <if test="cssStyle != null">
+        css_style,
       </if>
       <if test="cssClass != null">
         css_class,
@@ -178,9 +181,6 @@
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="id != null">
-        #{id,jdbcType=BIGINT},
-      </if>
       <if test="gmtCreate != null">
         #{gmtCreate,jdbcType=TIMESTAMP},
       </if>
@@ -208,8 +208,8 @@
       <if test="orderNo != null">
         #{orderNo,jdbcType=SMALLINT},
       </if>
-      <if test="cssType != null">
-        #{cssType,jdbcType=VARCHAR},
+      <if test="cssStyle != null">
+        #{cssStyle,jdbcType=VARCHAR},
       </if>
       <if test="cssClass != null">
         #{cssClass,jdbcType=VARCHAR},
@@ -267,8 +267,8 @@
       <if test="record.orderNo != null">
         order_no = #{record.orderNo,jdbcType=SMALLINT},
       </if>
-      <if test="record.cssType != null">
-        css_type = #{record.cssType,jdbcType=VARCHAR},
+      <if test="record.cssStyle != null">
+        css_style = #{record.cssStyle,jdbcType=VARCHAR},
       </if>
       <if test="record.cssClass != null">
         css_class = #{record.cssClass,jdbcType=VARCHAR},
@@ -302,7 +302,7 @@
       code = #{record.code,jdbcType=VARCHAR},
       "value" = #{record.value,jdbcType=VARCHAR},
       order_no = #{record.orderNo,jdbcType=SMALLINT},
-      css_type = #{record.cssType,jdbcType=VARCHAR},
+      css_style = #{record.cssStyle,jdbcType=VARCHAR},
       css_class = #{record.cssClass,jdbcType=VARCHAR},
       html_attribute = #{record.htmlAttribute,jdbcType=VARCHAR},
       url = #{record.url,jdbcType=VARCHAR},
@@ -342,8 +342,8 @@
       <if test="orderNo != null">
         order_no = #{orderNo,jdbcType=SMALLINT},
       </if>
-      <if test="cssType != null">
-        css_type = #{cssType,jdbcType=VARCHAR},
+      <if test="cssStyle != null">
+        css_style = #{cssStyle,jdbcType=VARCHAR},
       </if>
       <if test="cssClass != null">
         css_class = #{cssClass,jdbcType=VARCHAR},
@@ -374,7 +374,7 @@
       code = #{code,jdbcType=VARCHAR},
       "value" = #{value,jdbcType=VARCHAR},
       order_no = #{orderNo,jdbcType=SMALLINT},
-      css_type = #{cssType,jdbcType=VARCHAR},
+      css_style = #{cssStyle,jdbcType=VARCHAR},
       css_class = #{cssClass,jdbcType=VARCHAR},
       html_attribute = #{htmlAttribute,jdbcType=VARCHAR},
       url = #{url,jdbcType=VARCHAR},

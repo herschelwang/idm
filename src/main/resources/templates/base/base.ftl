@@ -31,6 +31,31 @@
         }
             <#if textJs??>${textJs}</#if>
     </script>
+
+    <link rel="stylesheet" type="text/css" href="${applicationPath!}/css/base/common.css">
+    <link rel="stylesheet" type="text/css" href="${applicationPath!}/css/iconfont/iconfont.css">
+    <link rel="stylesheet" type="text/css" href="${applicationPath!}/webjars/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="${applicationPath!}/webjars/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="${applicationPath!}/webjars/bootstrap/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" type="text/css" href="${applicationPath!}/webjars/bootstrap-datepicker/css/bootstrap-datepicker.min.css">
+    <link rel="stylesheet" type="text/css" href="${applicationPath!}/webjars/bootstrap-select/css/bootstrap-select.min.css">
+    <link rel="stylesheet" type="text/css" href="${applicationPath!}/lib/jquery-easyui/themes/bootstrap/easyui.css">
+    <link rel="stylesheet" type="text/css" href="${applicationPath!}/lib/jquery-easyui/themes/icon.css">
+
+    <script type="text/javascript" src="${applicationPath!}/webjars/jquery/jquery.min.js"></script>
+    <script type="text/javascript" src="${applicationPath!}/webjars/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="${applicationPath!}/webjars/bootstrap-datepicker/js/bootstrap-datepicker.min.js"></script>
+    <script type="text/javascript" src="${applicationPath!}/webjars/bootstrap-datepicker/locales/bootstrap-datepicker.zh-CN.min.js"></script>
+    <script type="text/javascript" src="${applicationPath!}/webjars/bootstrap-select/js/bootstrap-select.min.js"></script>
+    <script type="text/javascript" src="${applicationPath!}/webjars/bootstrap-select/js/i18n/defaults-zh_CN.min.js"></script>
+    <script type="text/javascript" src="${applicationPath!}/webjars/jquery-cookie/jquery.cookie.js"></script>
+    <script type="text/javascript" src="${applicationPath!}/lib/jquery-easyui/jquery.easyui.min.js"></script>
+    <script type="text/javascript" src="${applicationPath!}/lib/jquery-easyui/locale/easyui-lang-zh_CN.js"></script>
+    <script type="text/javascript" src="${applicationPath!}/js/extends/easyuix.js"></script>
+    <script type="text/javascript" src="${applicationPath!}/js/extends/jqueryx.js"></script>
+    <script type="text/javascript" src="${applicationPath!}/js/widget/namespace.js"></script>
+    <script type="text/javascript" src="${applicationPath!}/js/widget/util.js"></script>
+
     <#nested>
 </head>
 </#macro>

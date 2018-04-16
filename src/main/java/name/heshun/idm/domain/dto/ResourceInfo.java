@@ -25,7 +25,7 @@ public class ResourceInfo implements Serializable {
 
     private Short orderNo;
 
-    private String cssType;
+    private String cssStyle;
 
     private String cssClass;
 
@@ -51,7 +51,6 @@ public class ResourceInfo implements Serializable {
     private List<ResourceInfo> resourceInfos;
 
     private int sonNum;
-
 
     public Long getId() {
         return id;
@@ -133,12 +132,12 @@ public class ResourceInfo implements Serializable {
         this.orderNo = orderNo;
     }
 
-    public String getCssType() {
-        return cssType;
+    public String getCssStyle() {
+        return cssStyle;
     }
 
-    public void setCssType(String cssType) {
-        this.cssType = cssType == null ? null : cssType.trim();
+    public void setCssStyle(String cssStyle) {
+        this.cssStyle = cssStyle == null ? null : cssStyle.trim();
     }
 
     public String getCssClass() {

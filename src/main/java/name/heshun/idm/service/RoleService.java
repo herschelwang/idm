@@ -62,7 +62,7 @@ public interface RoleService {
      * @param roleId
      * @return
      */
-    ResultData<List<Map<String, Object>>> getRoleAndUserByRoleId(Long roleId);
+    ResultData<List<Map<String, Object>>> listUserByRoleId(Long roleId);
 
     /**
      * 获取角色功能(菜单)信息

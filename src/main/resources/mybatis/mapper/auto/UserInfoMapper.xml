@@ -1,17 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="name.heshun.idm.domain.dao.auto.RoleInfoMapper">
-  <resultMap id="BaseResultMap" type="name.heshun.idm.domain.dto.auto.RoleInfo">
+<mapper namespace="name.heshun.idm.domain.dao.auto.UserInfoMapper">
+  <resultMap id="BaseResultMap" type="name.heshun.idm.domain.dto.auto.UserInfo">
     <id column="id" jdbcType="BIGINT" property="id" />
     <result column="gmt_create" jdbcType="TIMESTAMP" property="gmtCreate" />
     <result column="gmt_modified" jdbcType="TIMESTAMP" property="gmtModified" />
     <result column="is_delete" jdbcType="TINYINT" property="isDelete" />
     <result column="name" jdbcType="VARCHAR" property="name" />
     <result column="code" jdbcType="VARCHAR" property="code" />
-    <result column="is_default" jdbcType="TINYINT" property="isDefault" />
+    <result column="sex" jdbcType="TINYINT" property="sex" />
+    <result column="phone" jdbcType="VARCHAR" property="phone" />
+    <result column="qq" jdbcType="VARCHAR" property="qq" />
+    <result column="email" jdbcType="VARCHAR" property="email" />
+    <result column="address" jdbcType="VARCHAR" property="address" />
+    <result column="identity_card_no" jdbcType="VARCHAR" property="identityCardNo" />
     <result column="status" jdbcType="TINYINT" property="status" />
-    <result column="type" jdbcType="TINYINT" property="type" />
-    <result column="description" jdbcType="VARCHAR" property="description" />
     <result column="remark" jdbcType="VARCHAR" property="remark" />
   </resultMap>
   <sql id="Example_Where_Clause">
@@ -73,16 +76,16 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, gmt_create, gmt_modified, is_delete, "name", code, is_default, "status", "type", 
-    description, remark
+    id, gmt_create, gmt_modified, is_delete, "name", code, sex, phone, qq, email, address, 
+    identity_card_no, "status", remark
   </sql>
-  <select id="selectByExample" parameterType="name.heshun.idm.domain.dto.auto.RoleInfoExample" resultMap="BaseResultMap">
+  <select id="selectByExample" parameterType="name.heshun.idm.domain.dto.auto.UserInfoExample" resultMap="BaseResultMap">
     select
     <if test="distinct">
       distinct
     </if>
     <include refid="Base_Column_List" />
-    from role_info
+    from user_info
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
@@ -93,37 +96,39 @@
   <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
-    from role_info
+    from user_info
     where id = #{id,jdbcType=BIGINT}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
-    delete from role_info
+    delete from user_info
     where id = #{id,jdbcType=BIGINT}
   </delete>
-  <delete id="deleteByExample" parameterType="name.heshun.idm.domain.dto.auto.RoleInfoExample">
-    delete from role_info
+  <delete id="deleteByExample" parameterType="name.heshun.idm.domain.dto.auto.UserInfoExample">
+    delete from user_info
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="name.heshun.idm.domain.dto.auto.RoleInfo">
+  <insert id="insert" parameterType="name.heshun.idm.domain.dto.auto.UserInfo">
     <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
       SELECT LAST_INSERT_ID()
     </selectKey>
-    insert into role_info (gmt_create, gmt_modified, is_delete, 
-      "name", code, is_default, 
-      "status", "type", description, 
-      remark)
+    insert into user_info (gmt_create, gmt_modified, is_delete, 
+      "name", code, sex, phone, 
+      qq, email, address, 
+      identity_card_no, "status", remark
+      )
     values (#{gmtCreate,jdbcType=TIMESTAMP}, #{gmtModified,jdbcType=TIMESTAMP}, #{isDelete,jdbcType=TINYINT}, 
-      #{name,jdbcType=VARCHAR}, #{code,jdbcType=VARCHAR}, #{isDefault,jdbcType=TINYINT}, 
-      #{status,jdbcType=TINYINT}, #{type,jdbcType=TINYINT}, #{description,jdbcType=VARCHAR}, 
-      #{remark,jdbcType=VARCHAR})
+      #{name,jdbcType=VARCHAR}, #{code,jdbcType=VARCHAR}, #{sex,jdbcType=TINYINT}, #{phone,jdbcType=VARCHAR}, 
+      #{qq,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, 
+      #{identityCardNo,jdbcType=VARCHAR}, #{status,jdbcType=TINYINT}, #{remark,jdbcType=VARCHAR}
+      )
   </insert>
-  <insert id="insertSelective" parameterType="name.heshun.idm.domain.dto.auto.RoleInfo">
+  <insert id="insertSelective" parameterType="name.heshun.idm.domain.dto.auto.UserInfo">
     <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
       SELECT LAST_INSERT_ID()
     </selectKey>
-    insert into role_info
+    insert into user_info
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="gmtCreate != null">
         gmt_create,
@@ -140,17 +145,26 @@
       <if test="code != null">
         code,
       </if>
-      <if test="isDefault != null">
-        is_default,
+      <if test="sex != null">
+        sex,
+      </if>
+      <if test="phone != null">
+        phone,
+      </if>
+      <if test="qq != null">
+        qq,
+      </if>
+      <if test="email != null">
+        email,
+      </if>
+      <if test="address != null">
+        address,
+      </if>
+      <if test="identityCardNo != null">
+        identity_card_no,
       </if>
       <if test="status != null">
         "status",
-      </if>
-      <if test="type != null">
-        "type",
-      </if>
-      <if test="description != null">
-        description,
       </if>
       <if test="remark != null">
         remark,
@@ -172,31 +186,40 @@
       <if test="code != null">
         #{code,jdbcType=VARCHAR},
       </if>
-      <if test="isDefault != null">
-        #{isDefault,jdbcType=TINYINT},
+      <if test="sex != null">
+        #{sex,jdbcType=TINYINT},
+      </if>
+      <if test="phone != null">
+        #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="qq != null">
+        #{qq,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null">
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null">
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="identityCardNo != null">
+        #{identityCardNo,jdbcType=VARCHAR},
       </if>
       <if test="status != null">
         #{status,jdbcType=TINYINT},
-      </if>
-      <if test="type != null">
-        #{type,jdbcType=TINYINT},
-      </if>
-      <if test="description != null">
-        #{description,jdbcType=VARCHAR},
       </if>
       <if test="remark != null">
         #{remark,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="name.heshun.idm.domain.dto.auto.RoleInfoExample" resultType="java.lang.Long">
-    select count(*) from role_info
+  <select id="countByExample" parameterType="name.heshun.idm.domain.dto.auto.UserInfoExample" resultType="java.lang.Long">
+    select count(*) from user_info
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </select>
   <update id="updateByExampleSelective" parameterType="map">
-    update role_info
+    update user_info
     <set>
       <if test="record.id != null">
         id = #{record.id,jdbcType=BIGINT},
@@ -216,17 +239,26 @@
       <if test="record.code != null">
         code = #{record.code,jdbcType=VARCHAR},
       </if>
-      <if test="record.isDefault != null">
-        is_default = #{record.isDefault,jdbcType=TINYINT},
+      <if test="record.sex != null">
+        sex = #{record.sex,jdbcType=TINYINT},
+      </if>
+      <if test="record.phone != null">
+        phone = #{record.phone,jdbcType=VARCHAR},
+      </if>
+      <if test="record.qq != null">
+        qq = #{record.qq,jdbcType=VARCHAR},
+      </if>
+      <if test="record.email != null">
+        email = #{record.email,jdbcType=VARCHAR},
+      </if>
+      <if test="record.address != null">
+        address = #{record.address,jdbcType=VARCHAR},
+      </if>
+      <if test="record.identityCardNo != null">
+        identity_card_no = #{record.identityCardNo,jdbcType=VARCHAR},
       </if>
       <if test="record.status != null">
         "status" = #{record.status,jdbcType=TINYINT},
-      </if>
-      <if test="record.type != null">
-        "type" = #{record.type,jdbcType=TINYINT},
-      </if>
-      <if test="record.description != null">
-        description = #{record.description,jdbcType=VARCHAR},
       </if>
       <if test="record.remark != null">
         remark = #{record.remark,jdbcType=VARCHAR},
@@ -237,24 +269,27 @@
     </if>
   </update>
   <update id="updateByExample" parameterType="map">
-    update role_info
+    update user_info
     set id = #{record.id,jdbcType=BIGINT},
       gmt_create = #{record.gmtCreate,jdbcType=TIMESTAMP},
       gmt_modified = #{record.gmtModified,jdbcType=TIMESTAMP},
       is_delete = #{record.isDelete,jdbcType=TINYINT},
       "name" = #{record.name,jdbcType=VARCHAR},
       code = #{record.code,jdbcType=VARCHAR},
-      is_default = #{record.isDefault,jdbcType=TINYINT},
+      sex = #{record.sex,jdbcType=TINYINT},
+      phone = #{record.phone,jdbcType=VARCHAR},
+      qq = #{record.qq,jdbcType=VARCHAR},
+      email = #{record.email,jdbcType=VARCHAR},
+      address = #{record.address,jdbcType=VARCHAR},
+      identity_card_no = #{record.identityCardNo,jdbcType=VARCHAR},
       "status" = #{record.status,jdbcType=TINYINT},
-      "type" = #{record.type,jdbcType=TINYINT},
-      description = #{record.description,jdbcType=VARCHAR},
       remark = #{record.remark,jdbcType=VARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="name.heshun.idm.domain.dto.auto.RoleInfo">
-    update role_info
+  <update id="updateByPrimaryKeySelective" parameterType="name.heshun.idm.domain.dto.auto.UserInfo">
+    update user_info
     <set>
       <if test="gmtCreate != null">
         gmt_create = #{gmtCreate,jdbcType=TIMESTAMP},
@@ -271,17 +306,26 @@
       <if test="code != null">
         code = #{code,jdbcType=VARCHAR},
       </if>
-      <if test="isDefault != null">
-        is_default = #{isDefault,jdbcType=TINYINT},
+      <if test="sex != null">
+        sex = #{sex,jdbcType=TINYINT},
+      </if>
+      <if test="phone != null">
+        phone = #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="qq != null">
+        qq = #{qq,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null">
+        email = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null">
+        address = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="identityCardNo != null">
+        identity_card_no = #{identityCardNo,jdbcType=VARCHAR},
       </if>
       <if test="status != null">
         "status" = #{status,jdbcType=TINYINT},
-      </if>
-      <if test="type != null">
-        "type" = #{type,jdbcType=TINYINT},
-      </if>
-      <if test="description != null">
-        description = #{description,jdbcType=VARCHAR},
       </if>
       <if test="remark != null">
         remark = #{remark,jdbcType=VARCHAR},
@@ -289,17 +333,20 @@
     </set>
     where id = #{id,jdbcType=BIGINT}
   </update>
-  <update id="updateByPrimaryKey" parameterType="name.heshun.idm.domain.dto.auto.RoleInfo">
-    update role_info
+  <update id="updateByPrimaryKey" parameterType="name.heshun.idm.domain.dto.auto.UserInfo">
+    update user_info
     set gmt_create = #{gmtCreate,jdbcType=TIMESTAMP},
       gmt_modified = #{gmtModified,jdbcType=TIMESTAMP},
       is_delete = #{isDelete,jdbcType=TINYINT},
       "name" = #{name,jdbcType=VARCHAR},
       code = #{code,jdbcType=VARCHAR},
-      is_default = #{isDefault,jdbcType=TINYINT},
+      sex = #{sex,jdbcType=TINYINT},
+      phone = #{phone,jdbcType=VARCHAR},
+      qq = #{qq,jdbcType=VARCHAR},
+      email = #{email,jdbcType=VARCHAR},
+      address = #{address,jdbcType=VARCHAR},
+      identity_card_no = #{identityCardNo,jdbcType=VARCHAR},
       "status" = #{status,jdbcType=TINYINT},
-      "type" = #{type,jdbcType=TINYINT},
-      description = #{description,jdbcType=VARCHAR},
       remark = #{remark,jdbcType=VARCHAR}
     where id = #{id,jdbcType=BIGINT}
   </update>

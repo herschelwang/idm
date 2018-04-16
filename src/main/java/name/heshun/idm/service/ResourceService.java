@@ -21,4 +21,12 @@ public interface ResourceService {
     ResultData<List<RoleResourceKey>> listKeyByResourceId(Long resourceId);
 
     Void saveRoleResource(Long roleId, List<Long> resourceIds);
+
+
+    ResultData<Long> insertResource(ResourceInfo info);
+
+    ResultData<Long> updateResource(ResourceInfo info);
+    ResultData<ResourceInfo> getResource(Long id);
+    ResultData<Long> deleteResource(Long id);
 }
+
